@@ -1,7 +1,16 @@
 package com.jobPortal.Dto;
 
-import java.security.PublicKey;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
+@Builder
 public class JobPostStatusDTO {
 
 	public int totalJobs;
@@ -10,17 +19,4 @@ public class JobPostStatusDTO {
 	public int totalPartTimeJobs;
 	public int totalContractJobs;
 
-	public JobPostStatusDTO() {
-	Public JobPostStatusDTO(int totalJobs
-			,int totalInternships
-			,int totalFullTimeJobs
-			,int totalPartTimeJobs
-			,int totalContractJobs) {
-		this.totalJobs=totalJobs;
-		this.totalInternship=totalInternships;
-		this.totalFullTimeJobs=totalFullTimeJobs;
-		this.totalPartTimeJobs=totalPartTimeJobs;
-		this.totalContractJobs=totalContractJobs;
-	}
-	}
 }

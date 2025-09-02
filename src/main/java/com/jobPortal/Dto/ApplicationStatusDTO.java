@@ -1,5 +1,16 @@
 package com.jobPortal.Dto;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
+@Builder
 public class ApplicationStatusDTO {
 
 	public int totalApplications;
@@ -7,14 +18,4 @@ public class ApplicationStatusDTO {
 	public int totalRejected;
 	public int totalPending;
 
-	public ApplicationStatusDTO() {
-	}
-
-	public ApplicationStatusDTO(int totalApplications,int totalShortlisted,int totalRejected,int totalPending) {
-
-			this.totalApplications=totalApplications,
-			this.totalShortlisted=totalShortlisted,
-			this.totalRejected=totalRejected,
-			this.totalPending=totalPending
-	}
 }

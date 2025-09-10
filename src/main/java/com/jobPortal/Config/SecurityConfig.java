@@ -42,7 +42,8 @@ public class SecurityConfig {
 		http.csrf(csrf -> csrf.disable()).cors(cors -> cors.disable())
 				.authorizeHttpRequests(auth -> auth.requestMatchers("/api/auth/**").permitAll()
 						.requestMatchers("/api/jobseeker/**").hasRole("JOBSEEKER").requestMatchers("/upload", "/error")
-						.permitAll().requestMatchers("/api/applications/**").permitAll().anyRequest().authenticated())
+						.permitAll().requestMatchers("/api/applications/**").permitAll()
+						.requestMatchers("api/recruiter/**").permitAll().anyRequest().authenticated())
 				.exceptionHandling(ex -> ex.authenticationEntryPoint(point))
 				.sessionManagement(sm -> sm.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
 

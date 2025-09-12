@@ -40,10 +40,13 @@ public class SecurityConfig {
 	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
 		http.csrf(csrf -> csrf.disable()).cors(cors -> cors.disable())
-				.authorizeHttpRequests(auth -> auth.requestMatchers("/api/auth/**").permitAll()
-						.requestMatchers("/api/jobseeker/**").hasRole("JOBSEEKER").requestMatchers("/upload", "/error")
-						.permitAll().requestMatchers("/api/applications/**").permitAll()
-						.requestMatchers("api/recruiter/**").permitAll().anyRequest().authenticated())
+				.authorizeHttpRequests(
+						auth -> auth.requestMatchers("/api/auth/**").permitAll().requestMatchers("/api/jobseeker/**")
+								.hasRole("JOBSEEKER").requestMatchers("/api/recruiter/**").hasRole("RECRUITER")
+								.requestMatchers("/api/admins/**", "/api/moderation/**", "/api/analytics/**")
+								.hasRole("ADMIN").requestMatchers("/upload", "/error").permitAll()
+								.requestMatchers("/api/applications/**").permitAll().anyRequest().authenticated())
+
 				.exceptionHandling(ex -> ex.authenticationEntryPoint(point))
 				.sessionManagement(sm -> sm.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
 

@@ -20,7 +20,7 @@ import lombok.Setter;
 @Builder
 public class ApplicationDTO {
 	private Long jobId;
-	private String jobseekerName;
+	private String jobSeekerName;
 	private String jobSeekerEmail;
 	private String recruiterEmail;
 	private String jobTitle;

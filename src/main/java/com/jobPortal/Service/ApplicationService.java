@@ -27,7 +27,7 @@ public class ApplicationService {
 			throw new RuntimeException("You already applied for this job");
 		}
 
-		Application app = Application.builder().jobId(dto.getJobId()).jobSeekerName(dto.getJobseekerName())
+		Application app = Application.builder().jobId(dto.getJobId()).jobSeekerName(dto.getJobSeekerName())
 				.jobSeekerEmail(dto.getJobSeekerEmail()).jobTitle(dto.getJobTitle()).jobType(dto.getJobType())
 				.recruiterEmail(dto.getRecruiterEmail()).status(ApplicationStatus.APPLIED)
 				.appliedAt(LocalDateTime.now()).build();
@@ -65,7 +65,7 @@ public class ApplicationService {
 	}
 
 	private ApplicationDTO mapToDTO(Application app) {
-		return ApplicationDTO.builder().jobId(app.getJobId()).jobseekerName(app.getJobSeekerName())
+		return ApplicationDTO.builder().jobId(app.getJobId()).jobSeekerName(app.getJobSeekerName())
 				.jobSeekerEmail(app.getJobSeekerEmail()).recruiterEmail(app.getRecruiterEmail())
 				.jobTitle(app.getJobTitle()).jobType(app.getJobType()).status(app.getStatus())
 				.appliedAt(app.getAppliedAt()).build();

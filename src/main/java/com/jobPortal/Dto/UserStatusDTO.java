@@ -13,8 +13,8 @@ import lombok.Setter;
 @Builder
 public class UserStatusDTO {
 
-	public int totalJobSeekers;
-	public int totalRecruiter;
-	public int totalBlockUsers;
+	private int totalJobSeekers;
+	private int totalRecruiters;
+	private int totalBlockUsers;
 
 }

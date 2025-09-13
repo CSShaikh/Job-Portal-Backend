@@ -13,9 +13,8 @@ import lombok.Setter;
 @Builder
 public class ApplicationStatusDTO {
 
-	public int totalApplications;
-	public int totalShortlisted;
-	public int totalRejected;
-	public int totalPending;
+	private int totalApplications;
+	private int totalShortlisted;
+	private int totalRejected;
 
 }

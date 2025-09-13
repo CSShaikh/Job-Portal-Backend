@@ -13,10 +13,11 @@ import lombok.Setter;
 @Builder
 public class JobPostStatusDTO {
 
-	public int totalJobs;
-	public int totalInternship;
-	public int totalFullTimeJobs;
-	public int totalPartTimeJobs;
-	public int totalContractJobs;
+	private int totalJobs;
+	private int totalInternship;
+	private int totalFullTimeJobs;
+	private int totalPartTimeJobs;
+	private int totalContractJobs;
+	private int totalFreelanceJobs;
 
 }

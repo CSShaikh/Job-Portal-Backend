@@ -31,28 +31,33 @@ public class JwtAuthFilter extends OncePerRequestFilter {
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
 			throws ServletException, IOException {
 
-		final String requestPath = request.getServletPath();
+		String requestPath = request.getServletPath();
 
-		// Bypass JWT check for auth endpoints
-		if (requestPath.startsWith("/auth/register") || requestPath.startsWith("/auth/login")) {
+		// Bypass JWT check for public auth endpoints
+		if (requestPath.startsWith("/api/auth/")) {
 			filterChain.doFilter(request, response);
 			return;
 		}
 
-		final String authHeader = request.getHeader("Authorization");
-		final String jwt;
-		final String username;
-
+		String authHeader = request.getHeader("Authorization");
 		if (authHeader == null || !authHeader.startsWith("Bearer ")) {
 			filterChain.doFilter(request, response);
 			return;
 		}
 
-		jwt = authHeader.substring(7);
-		username = jwtService.extractUsername(jwt);
+		String jwt = authHeader.substring(7);
+		String username;
+
+		try {
+			username = jwtService.extractUsername(jwt);
+		} catch (Exception e) {
+			// Malformed or invalid JWT, skip authentication
+			filterChain.doFilter(request, response);
+			return;
+		}
 
 		if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
-			UserDetails userDetails = this.userDetailsService.loadUserByUsername(username);
+			UserDetails userDetails = userDetailsService.loadUserByUsername(username);
 
 			if (jwtService.validateToken(jwt, userDetails)) {
 				UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(userDetails,
@@ -64,5 +69,4 @@ public class JwtAuthFilter extends OncePerRequestFilter {
 
 		filterChain.doFilter(request, response);
 	}
-
 }
